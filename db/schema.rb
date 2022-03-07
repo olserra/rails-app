@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_04_144243) do
+ActiveRecord::Schema.define(version: 2022_03_07_131051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -24,6 +31,20 @@ ActiveRecord::Schema.define(version: 2022_03_04_144243) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.bigint "store_id"
+    t.bigint "product_id"
+    t.integer "quantity"
+    t.bigint "payment_method_id"
+    t.boolean "voucher"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_method_id"], name: "index_purchases_on_payment_method_id"
+    t.index ["product_id"], name: "index_purchases_on_product_id"
+    t.index ["store_id"], name: "index_purchases_on_store_id"
+  end
+
   create_table "stores", force: :cascade do |t|
     t.string "name"
     t.string "location"
@@ -31,4 +52,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_144243) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "purchases", "payment_methods"
+  add_foreign_key "purchases", "products"
+  add_foreign_key "purchases", "stores"
 end
