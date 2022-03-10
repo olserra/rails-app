@@ -9,8 +9,9 @@ class Api::V1::PurchasesController < ApplicationController
       quantity: prod_params[:quantity],
       value: prod_params[:value],
       payment_method: prod_params[:payment_method],
-      voucher: prod_params[:voucher]
-      description: prod_params[:description]
+      voucher: prod_params[:voucher],
+      description: prod_params[:description],
+      store_id: prod_params[:store_id]
       )
       if purchases.save
         render json: purchases, status: 200

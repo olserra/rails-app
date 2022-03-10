@@ -5,15 +5,12 @@ class Api::V1::PaymentMethodsController < ApplicationController
   end
 
   def create
-    payment_method = PaymentMethod.new(
-      payment_type: prod_params[:payment_type],
-      name: prod_params[:name]
-      )
-      if payment_method.save
-        render json: payment_method, status: 200
-      else
-        render json: {error: "Error creating payment_method."}
-      end
+    payment_method = PaymentMethod.new(prod_params)
+    if payment_method.save
+      render json: payment_method, status: 200
+    else
+      render json: {error: "Error creating payment_method."}
+    end
   end
 
   def show
