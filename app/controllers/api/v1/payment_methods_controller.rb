@@ -6,7 +6,7 @@ class Api::V1::PaymentMethodsController < ApplicationController
 
   def create
     payment_method = PaymentMethod.new(
-      type: prod_params[:type]
+      payment_type: prod_params[:payment_type],
       name: prod_params[:name]
       )
       if payment_method.save
@@ -27,7 +27,7 @@ class Api::V1::PaymentMethodsController < ApplicationController
 
   def prod_params
     params.require(:payment_method).permit([
-      :type,
+      :payment_type,
       :name
     ])
   end

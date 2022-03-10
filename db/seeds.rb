@@ -46,36 +46,36 @@ Store.create([
 
 PaymentMethod.create([
     {
-        type: 'CreditCard',
+        payment_type: 'CreditCard',
         name: 'Master Card',
     }, 
     {
-        type: 'CreditCard',
+        payment_type: 'CreditCard',
         name: 'Visa',
     },
     {
-        type: 'CreditCard',
+        payment_type: 'CreditCard',
         name: 'American Express',
     },
 ])
 
-# Purchase.create([
-#     {
-#         store_id: 1,
-#         product_id: 1,
-#         payment_method_id: 1,
-#         quantity: 1, 
-#     },
-#     {
-#         store_id: 2,
-#         product_id: 4,
-#         payment_method_id: 2,
-#         quantity: 2, 
-#     },
-#     {
-#         store_id: 3,
-#         product_id: 2,
-#         payment_method_id: 3,
-#         quantity: 3, 
-#     },
-# ])
+Purchase.create([
+    {
+        store_id: 1,
+        product_id: 1,
+        payment_method_id: 1,
+        quantity: 1, 
+    },
+    {
+        store_id: 2,
+        product_id: 4,
+        payment_method_id: 2,
+        quantity: 2, 
+    },
+    {
+        store_id: 3,
+        product_id: 2,
+        payment_method_id: 3,
+        quantity: 3, 
+    },
+])
